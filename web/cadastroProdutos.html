@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>Horizontal Application Form - Template Monster Demo</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://static.tmimgcdn.com/img/favicon.ico">
+  <link rel="icon" href="http://static.tmimgcdn.com/img/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" media="all" href="css/switchery.min.css">
+  <script type="text/javascript" src="js/switchery.min.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+  
+  <h1>Cadastro de Produtos</h1>
+  
+  <form onsubmit="return false">
+  <div class="col-2">
+    <label>
+      Nome
+      <input placeholder="Nome do produto" id="name" name="name" tabindex="1">
+    </label>
+  </div>
+  <div class="col-2">
+    <label>
+      Peso
+      <input type="number" placeholder="Peso do produto" id="company" name="company" tabindex="2">
+    </label>
+  </div>
+  
+  <div class="col-3">
+    <label>
+      Tipo
+      <input placeholder="Tipo do produto" id="phone" name="phone" tabindex="3">
+    </label>
+  </div>
+  <div class="col-3">
+    <label>
+      Valor
+      <input type="number" placeholder="Valor do produto" id="phone" name="phone" tabindex="3">
+    </label>
+  </div>
+  
+  
+  <div class="col-submit">
+    <button class="submitbtn">Cadastrar Produto</button>
+  </div>
+  
+  </form>
+  </div>
+<script type="text/javascript">
+var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+elems.forEach(function(html) {
+  var switchery = new Switchery(html);
+});
+</script>
+</body>
+</html>
