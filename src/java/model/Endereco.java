@@ -14,11 +14,21 @@ public class Endereco {
     private int id;
     private String rua;
     private String estado;
+    private String cidade;
     private int numero;
     private String complemento;
     private String bairro;
     private String cep;
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    
     public int getId() {
         return id;
     }
