@@ -1,3 +1,4 @@
+<%@page import="model.Pedido"%>
 <%@page import="model.Usuario"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,7 +12,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Editar Usuarios</title>
+    <title>Editar Pedidos</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -30,50 +31,47 @@
                     <h2 class="title">Editar Usuario</h2>
                     <% //estou criando uma variável do mesmo do tipo do atributo 
     
-                        Usuario user = new Usuario();
-                        user = (Usuario) request.getAttribute("usuario");
-                        System.out.println("Id:"+user.getId());
+                        Pedido pedido = new Pedido();
+                        pedido = (Pedido) request.getAttribute("pedido");
+                        System.out.println("Id:"+pedido.getId());
                     %>%>
                     <form method="post" action="GerenciarUser">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">ID: </label>
-                                    <input class="input--style-4" value="<%=user.getId()%>" type="text" name="id" readonly="true">
+                                    <input class="input--style-4" value="<%=pedido.getId()%>" type="text" name="id" readonly="true">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Nome</label>
-                                    <input class="input--style-4" value="<%=user.getNome()%>" type="text" name="nome">
+                                    <label class="label">Cliente</label>
+                                    <input class="input--style-4" value="<%=pedido.getCliente()%>" type="text" name="nome">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Login</label>
-                                    <input class="input--style-4" value="<%=user.getLogin()%>" type="text" name="login">
+                                    <label class="label">Data</label>
+                                    <input class="input--style-4" value="<%=pedido.getDataPedido()%>" type="text" name="login">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Senha</label>
+                                    <label class="label">Valor</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-mail" value="<%=user.getSenha()%>" type="text" name="senha">
-                                        
+                                        <input class="input--style-4 js-mail" value="<%=pedido.getValor()%>" type="text" name="senha">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                                    <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Admin?</label>
+                                    <label class="label">Quantidade de Paes</label>
                                     <div class="input-group-icon">
-                                    <div class="custom-control custom-radio">
-                                    <input type="radio" name="radioAdmin" id="isUser" value="user" class="custom-control-input" required></input>
-                                    <label class="custom-control-label">Usuario</label>
-                                    <input type="radio" name="radioAdmin" id="isAdmin" value="admin" class="custom-control-input" required></input>
-                                    <label class="custom-control-label">Admin</label> 
+                                        <input class="input--style-4 js-mail" value="<%=pedido.getQtdPaes()%>" type="text" name="senha">
                                     </div>
                                 </div>
                             </div>

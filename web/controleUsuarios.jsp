@@ -1,3 +1,5 @@
+<%@page import="model.Usuario"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -269,7 +271,7 @@ $(document).ready(function(){
           <div class="col-sm-6">
             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Cadastrar novo Usuario</span></a>
             <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Deletar</span></a>           
-          </div>
+            </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -281,74 +283,41 @@ $(document).ready(function(){
                 <label for="selectAll"></label>
               </span>
             </th>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Login</th>
                 <th>Senha</th>
                 <th>Admin?</th>
                 </thead>
                 <tbody>
+                    <form>
                     <tr>
-            <td>
-              <span class="custom-checkbox">
-                <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                <label for="checkbox1"></label>
-              </span>
-            </td>
-                            <td>Guilherme</td>
-                            <td>guiandrus</td>
-                            <td>admin</td>
-                            <td>true</td>
-                            <td>
-                            <a href="#editEmployeeModal" class="edit" id="edit_a"data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                            <td>
-                              <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox2" name="options[]" value="1">
-                                <label for="checkbox2"></label>
-                              </span>
-                            </td>
-                            <td>admin</td>
-                            <td>admin</td>
-                            <td>admin</td>
-                            <td>true</td>
+                        <% UsuarioDAO dao = new UsuarioDAO();
+                            List<Usuario> usuarios = dao.consulta();
+                            int x = 0;
+                            for (Usuario u : usuarios) {
+                            %>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
+                          <span class="custom-checkbox">
+                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                            <label for="checkbox1"></label>
+                          </span>
                         </td>
-                    </tr>
-                    <tr>
+                            <td><%=u.getId()%></td>
+                            <td><%=u.getNome()%></td>
+                            <td><%=u.getLogin()%></td>
+                            <td><%=u.getSenha()%></td>
+                            <td><%=u.isIs_admin()%></td>
                             <td>
-                              <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox2" name="options[]" value="1">
-                                <label for="checkbox2"></label>
-                              </span>
-                            </td>
-                            <td>user</td>
-                            <td>user</td>
-                            <td>user123</td>
-                            <td>false</td>
-                        <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
+                            <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
+                          <input type="hidden" name="id_editar" value="<%=u.getId()%>"  id="<%= "id_item"+x%>"  >
+                          <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                         </td>
                     </tr>
+                    </form>
                 </tbody>
-            </table>
-      <div class="clearfix">
-                <div class="hint-text">Mostrando <b>3</b> de <b>3</b> Usuarios</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
+                </table>
+                <div class="clearfix">
         </div>
     </div>
   <!-- Edit Modal HTML -->
@@ -391,66 +360,5 @@ $(document).ready(function(){
       </div>
     </div>
   </div>
-  <!-- Edit Modal HTML -->
-  <div id="editEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">            
-            <h4 class="modal-title">Editar Usuario</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">          
-            <div class="form-group">
-              <label>Nome</label>
-              <input type="text" class="form-control" value=request.table.email  required>
-            </div>
-            <div class="form-group">
-              <label>Login</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Senha</label>
-              <input type="date" class="form-control" required></textarea>
-            </div>        
-            <div class="form-group">
-              <label>Admin ou usuario?</label>
-              <div class="custom-control custom-radio">
-              <input type="radio" name="radioAdmin" id="isUser" class="custom-control-input" required></input>
-              <label class="custom-control-label">Usuario</label>
-              <input type="radio" name="radioAdmin" id="isAdmin" class="custom-control-input" required></input>
-              <label class="custom-control-label">Admin</label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-            <input type="submit" class="btn btn-info" value="Salvar">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- Delete Modal HTML -->
-  <div id="deleteEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">            
-            <h4 class="modal-title">Deletar Usuario</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">          
-            <p>Tem certeza que quer deletar o usuario?</p>
-            <p class="text-warning"><small>Essa ação não poderá ser revertida.</small></p>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-danger" value="Delete">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
 </body>
 </html>                                                               

@@ -143,16 +143,17 @@ $(document).ready(function(){
                 <tbody>
                   <form>
                     <tr>  
-                        <td>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox2" name="options[]" value="1">
-                                <label for="checkbox2"></label>
-                            </span>
-                            <% FornecedorDAO dao = new FornecedorDAO();
+                        <% FornecedorDAO dao = new FornecedorDAO();
                             List<Fornecedor> fornecedores = dao.consulta();
                             int x = 0;
                             for (Fornecedor f : fornecedores) {
                             %>
+                        <td>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="checkbox2" name="options[]" value="<%=f.getId()%>">
+                                <label for="checkbox2"></label>
+                            </span>
+                            
                         </td>
                             <td><%=f.getId()%></td>
                             <td><%=f.getNome()%></td>
@@ -183,7 +184,7 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
-  <!-- Edit Modal HTML -->
+  <!-- ADD Modal HTML -->
   <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
