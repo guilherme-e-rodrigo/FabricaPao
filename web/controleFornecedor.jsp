@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="model.Fornecedor"%>
+<%@page import="dao.FornecedorDAO"%>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -41,7 +44,7 @@ $(document).ready(function(){
 });
 
 //<!----------------- Consulta CEP-------------!>
-    function limpa_formulário_cep() {
+    function limpa_formulario_cep() {
             //Limpa valores do formulário de cep.
             document.getElementById('rua').value=("");
             document.getElementById('bairro').value=("");
@@ -60,7 +63,7 @@ $(document).ready(function(){
         } //end if.
         else {
             //CEP não Encontrado.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
             alert("CEP não encontrado.");
         }
     }
@@ -97,13 +100,13 @@ $(document).ready(function(){
             } //end if.
             else {
                 //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
+                limpa_formulario_cep();
+                alert("Formato de CEP invalido.");
             }
         } //end if.
         else {
             //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
         }
     };
 </script>
@@ -131,32 +134,43 @@ $(document).ready(function(){
                 <label for="selectAll"></label>
               </span>
             </th>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>E-mail</th>
                 <th>Cnpj</th>
                 </thead>
                 <tbody>
+                  <form>
                     <tr>  
                         <td>
                             <span class="custom-checkbox">
                                 <input type="checkbox" id="checkbox2" name="options[]" value="1">
                                 <label for="checkbox2"></label>
                             </span>
+                            <% FornecedorDAO dao = new FornecedorDAO();
+                            List<Fornecedor> fornecedores = dao.consulta();
+                            int x = 0;
+                            for (Fornecedor f : fornecedores) {
+                            %>
                         </td>
-                            <td>nome</td>
-                            <td>cel</td>
-                            <td>e-mail</td>
-                            <td>cnpj</td>
+                            <td><%=f.getId()%></td>
+                            <td><%=f.getNome()%></td>
+                            <td><%=f.getTelefone()%></td>
+                            <td><%=f.getEmail()%></td>
+                            <td><%=f.getCnpj()%></td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Deletar">&#xE872;</i></a>
+                          <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
+                          <input type="hidden" name="id_editar" value="<%=f.getId()%>"  id="<%= "id_item"+x%>"  >
+                          <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                         </td>
+                        <%}%>
                     </tr>
+                  </form>
                 </tbody>
             </table>
       <div class="clearfix">
-                <div class="hint-text">Mostrando <b>3</b> de <b>3</b> Fornecedores</div>
+                <div class="hint-text">Mostrando <b>1</b> de <b>1</b> Fornecedores</div>
                 <ul class="pagination">
                     <li class="page-item disabled"><a href="#">Previous</a></li>
                     <li class="page-item"><a href="#" class="page-link">1</a></li>
@@ -234,66 +248,5 @@ $(document).ready(function(){
       </div>
     </div>
   </div>
-  <!-- Edit Modal HTML -->
-  <div id="editEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">            
-            <h4 class="modal-title">Editar Usuario</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">          
-            <div class="form-group">
-              <label>Nome</label>
-              <input type="text" class="form-control" value=request.table.email  required>
-            </div>
-            <div class="form-group">
-              <label>Login</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Senha</label>
-              <input type="date" class="form-control" required></textarea>
-            </div>        
-            <div class="form-group">
-              <label>Admin ou usuario?</label>
-              <div class="custom-control custom-radio">
-              <input type="radio" name="radioAdmin" id="isUser" class="custom-control-input" required></input>
-              <label class="custom-control-label">Usuario</label>
-              <input type="radio" name="radioAdmin" id="isAdmin" class="custom-control-input" required></input>
-              <label class="custom-control-label">Admin</label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-            <input type="submit" class="btn btn-info" value="Salvar">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- Delete Modal HTML -->
-  <div id="deleteEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">            
-            <h4 class="modal-title">Deletar Usuario</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">          
-            <p>Tem certeza que quer deletar o fornecedor?</p>
-            <p class="text-warning"><small>Essa ação não poderá ser revertida.</small></p>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-danger" value="Delete">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
 </body>
 </html>                                                               

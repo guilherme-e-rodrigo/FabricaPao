@@ -48,12 +48,15 @@ public class FornecedorDAO {
     public List<Fornecedor> consulta() throws SQLException {
         
             List<Fornecedor> fornecedores = new ArrayList();
-            PreparedStatement st = con.prepareStatement("select * from fornecedor limit 10");
+            PreparedStatement st = con.prepareStatement("select * from fornecedor");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Fornecedor fornecedor = new Fornecedor();
                 fornecedor.setId(rs.getInt("id"));
                 fornecedor.setNome(rs.getString("nome"));
+                fornecedor.setEmail(rs.getString("email"));
+                fornecedor.setCnpj(rs.getString("cnpj"));
+                fornecedor.setTelefone(rs.getString("telefone"));
                 //fornecedor.setDescricao(rs.getString("descricao"));
                 fornecedores.add(fornecedor);
             }
