@@ -16,6 +16,15 @@ public class Usuario {
     private String senha;
     private boolean is_admin;
     private String nome;
+    private String chave_senha;
+
+    public String getChave_senha() {
+        return chave_senha;
+    }
+
+    public void setChave_senha(String chave_senha) {
+        this.chave_senha = chave_senha;
+    }
 
     public int getId() {
         return id;

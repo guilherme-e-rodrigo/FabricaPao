@@ -28,6 +28,24 @@ public class FornecedorDAO {
         st.execute();
         con.close();
     }
+    
+    public Fornecedor getOneById(int id_fornecedor) throws SQLException, ClassNotFoundException {
+        String sql = "select * from fornecedor where id = ?";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setInt(1, id_fornecedor);
+        ResultSet rs = st.executeQuery();
+        Fornecedor fornecedor = new Fornecedor();
+        while(rs.next()) {
+            fornecedor.setId(rs.getInt("id"));
+            fornecedor.setNome(rs.getString("nome"));
+            fornecedor.setCnpj(rs.getString("cnpj"));
+            fornecedor.setEmail(rs.getString("email"));
+            fornecedor.setTelefone(rs.getString("telefone"));
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
+            fornecedor.setEndereco(enderecoDAO.getOneById(rs.getInt("id_endereco")));
+        }
+        return fornecedor;
+    }
 
     public void Cadastra(Fornecedor fornecedor) throws SQLException {
 

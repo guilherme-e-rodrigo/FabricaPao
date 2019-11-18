@@ -29,6 +29,25 @@ public class EnderecoDAO {
         st.execute();
         con.close();
     }
+    
+    public Endereco getOneById(int id_endereco) throws SQLException {
+        String sql = "select * from endereco where id = ?";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setInt(1, id_endereco);
+        ResultSet rs = st.executeQuery();
+        Endereco endereco = new Endereco();
+        while(rs.next()) {    
+            endereco.setBairro(rs.getString("bairro"));
+            endereco.setCep(rs.getString("cep"));
+            endereco.setCidade(rs.getString("cidade"));
+            endereco.setComplemento(rs.getString("complemento"));
+            endereco.setEstado(rs.getString("estado"));
+            endereco.setId(rs.getInt("id"));
+            endereco.setNumero(rs.getInt("numero"));
+            endereco.setRua(rs.getString("rua"));
+        }
+        return endereco;
+    }
 
     public void Cadastra(Endereco endereco) throws SQLException {
 
