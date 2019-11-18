@@ -105,6 +105,8 @@ public class GerenciarFornecedor extends HttpServlet {
             endereco.setComplemento(complemento);
             endereco.setCep(cep);
             
+            fornecedor.setEndereco(endereco);
+            
             EnderecoDAO edao = new EnderecoDAO();
             try {
                 edao.Cadastra(endereco);

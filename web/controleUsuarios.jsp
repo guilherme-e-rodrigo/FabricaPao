@@ -1,3 +1,4 @@
+<%@page import="dao.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -324,7 +325,7 @@ $(document).ready(function(){
   <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form action="GerenciarUser" method="post">
           <div class="modal-header">            
             <h4 class="modal-title">Adicionar Usuario</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -354,7 +355,7 @@ $(document).ready(function(){
           </div>
           <div class="modal-footer">
             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-            <input type="submit" class="btn btn-success" value="Add">
+            <input type="submit" class="btn btn-success" value="Add" name="acao">
           </div>
         </form>
       </div>
