@@ -1,3 +1,4 @@
+<%@page import="dao.UsuarioDAO"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -261,6 +262,32 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+    <nav class="navbar navbar-clean">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Paes e Bolos Jurema</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+            <li><a href="controleFornecedor.jsp">Fornecedores</a></li>
+            <li><a href="controleProdutos.jsp">Produtos</a></li>
+            <li><a href="controleUsuarios.jsp">Usuarios</a></li>
+            <li><a href="controleEstoque.jsp">Estoque</a></li>
+            <li><a href="controlePedidos.jsp">Pedidos</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
@@ -290,7 +317,7 @@ $(document).ready(function(){
                 <th>Admin?</th>
                 </thead>
                 <tbody>
-                    <form>
+                    <form action="GerenciarUsuarios" method="post">
                     <tr>
                         <% UsuarioDAO dao = new UsuarioDAO();
                             List<Usuario> usuarios = dao.consulta();
