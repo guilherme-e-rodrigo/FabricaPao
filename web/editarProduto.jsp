@@ -1,5 +1,8 @@
-<%@page import="model.Pedido"%>
-<%@page import="model.Usuario"%>
+<%@page import="model.Fornecedor"%>
+<%@page import="dao.FornecedorDAO"%>
+<%@page import="model.Produto"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.ProdutoDAO"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +15,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Editar Pedidos</title>
+    <title>Editar Fornecedor</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -24,54 +27,72 @@
 </head>
 
 <body>
+    <% //estou criando uma variável do mesmo do tipo do atributo 
+    Produto produto = new Produto();
+    produto = (Produto) request.getAttribute("produto");
+%>
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Editar Usuario</h2>
-                    <% //estou criando uma variÃ¡vel do mesmo do tipo do atributo 
-    
-                        Pedido pedido = new Pedido();
-                        pedido = (Pedido) request.getAttribute("pedido");
-                        System.out.println("Id:"+pedido.getId());
-                    %>%>
-                    <form method="post" action="GerenciarPedido">
+                    <h2 class="title">Editar entrada de produto</h2>
+                    <form action="GerenciarProduto"method="POST">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">ID: </label>
-                                    <input class="input--style-4" value="<%=pedido.getId()%>" type="text" name="id" readonly="true">
+                                    <label class="label">ID</label>
+                                    <input class="input--style-4" type="text" value="<%=produto.getId()%>" name="id">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Cliente</label>
-                                    <input class="input--style-4" value="<%=pedido.getCliente()%>" type="text" name="cliente">
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Data</label>
-                                    <input class="input--style-4" value="<%=pedido.getDataPedido()%>" type="date" name="data">
+                                    <label class="label">Nome</label>
+                                    <input class="input--style-4" value="<%=produto.getNome()%>" type="text" name="nome">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Valor</label>
+                                    <label class="label">Peso</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-mail" value="<%=pedido.getValor()%>" type="text" name="valor">
+                                        <input class="input--style-4 js-mail" value="<%=produto.getPeso()%>" type="text" name="peso">
+                                        
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                                    <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Quantidade de Paes</label>
+                                    <label class="label">Fornecedor</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-mail" value="<%=pedido.getQtdPaes()%>" type="text" name="qtdpaes">
+                                    <select name="fornecedores">
+                                    <% FornecedorDAO dao = new FornecedorDAO();
+                                    List<Fornecedor> fornecedores = dao.consulta();
+                                            int x = 0;
+                                     for (Fornecedor p: fornecedores) {
+
+                                    %>
+                                    <option value="<%=p.getId()%>"><%=p.getNome()%></option>
+
+                                    <%} %>
+                                    </select><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Data de producao</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" value="<%=produto.getData_producao()%>" type="date" name="data_producao">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Valido durante</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" value="<%=produto.getValidade_dias()%>" name="validade_dias">Dias</input>            
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +100,7 @@
                         <div class="row row-space">
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" name="acao" value="Alterar "type="submit">Editar</button>
+                            <button class="btn btn--radius-2 btn--blue" value="Alterar" name="acao" type="submit">Editar</button>
                         </div>
                     </form>
                 </div>

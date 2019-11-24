@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fornecedores</title>
+<title>Estoque</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -143,7 +143,7 @@ $(document).ready(function(){
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-            <h2>Controle de <b>Fornecedores</b></h2>
+            <h2>Controle de <b>Estoque</b></h2>
           </div>
           <div class="col-sm-6">
             <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Cadastrar novo Fornecedor</span></a>
@@ -160,7 +160,7 @@ $(document).ready(function(){
                 <label for="selectAll"></label>
               </span>
             </th>
-                <th>ID</th>
+                <th>Produto</th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>E-mail</th>

@@ -259,6 +259,32 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+    <nav class="navbar navbar-clean">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Paes e Bolos Jurema</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <li><a href="controleFornecedor.jsp">Fornecedores</a></li>
+        <li><a href="controleProdutos.jsp">Produtos</a></li>
+        <li><a href="controleUsuarios.jsp">Usuarios</a></li>
+        <li><a href="controleEstoque.jsp">Estoque</a></li>
+        <li><a href="controlePedidos.jsp">Pedidos</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
     <div class="container">
         <div class="table-wrapper">
             <div class="table-title">
@@ -341,20 +367,6 @@ $(document).ready(function(){
                     </tr>
                 </tbody>
             </table>
-      <div class="clearfix">
-                <div class="hint-text">Mostrando <b>3</b> de <b>3</b> Pedidos</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
   <!-- Edit Modal HTML -->
   <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
@@ -392,40 +404,7 @@ $(document).ready(function(){
     </div>
   </div>
   <!-- Edit Modal HTML -->
-  <div id="editEmployeeModal" class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form>
-          <div class="modal-header">            
-            <h4 class="modal-title">Editar Pedido</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          </div>
-          <div class="modal-body">          
-            <div class="form-group">
-              <label>Nome</label>
-              <input type="text" class="form-control" value=request.table.email  required>
-            </div>
-            <div class="form-group">
-              <label>Data de entrega</label>
-              <input type="date" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label>Valor do pedido</label>
-              <input type="date" class="form-control" required>
-            </div>        
-            <div class="form-group">
-              <label>Quantidade de pães</label>
-              <input type="date" class="form-control" required>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-            <input type="submit" class="btn btn-info" value="Salvar">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  
   <!-- Delete Modal HTML -->
   <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
