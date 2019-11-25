@@ -313,7 +313,6 @@ $(document).ready(function(){
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Login</th>
-                <th>Senha</th>
                 <th>Admin?</th>
                 </thead>
                 <tbody>
@@ -333,7 +332,6 @@ $(document).ready(function(){
                             <td><%=u.getId()%></td>
                             <td><%=u.getNome()%></td>
                             <td><%=u.getLogin()%></td>
-                            <td><%=u.getSenha()%></td>
                             <td><%=u.isIs_admin()%></td>
                             <td>
                             <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
@@ -341,6 +339,7 @@ $(document).ready(function(){
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                         </td>
                     </tr>
+                    <%}%>
                     </form>
                 </tbody>
                 </table>

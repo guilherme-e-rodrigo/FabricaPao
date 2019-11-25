@@ -161,10 +161,8 @@ $(document).ready(function(){
               </span>
             </th>
                 <th>Produto</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>E-mail</th>
-                <th>Cnpj</th>
+                <th>Quantidade</th>
+                <th>Entrada/Saida</th>
                 </thead>
                 <tbody>
                   <form action="GerenciarFornecedor" method="post">
