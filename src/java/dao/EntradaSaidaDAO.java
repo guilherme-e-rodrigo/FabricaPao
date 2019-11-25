@@ -37,29 +37,24 @@ public class EntradaSaidaDAO {
         return usuario;
     }
     
-    public void edita(Usuario usuario) throws SQLException{
-        String sql = "update usuario set nome = ?, user_login = ?, senha = ?, chave_senha = ?, is_admin = ? where id = ?;";
+    public void edita(EntradaSaida entradaSaida) throws SQLException{
+        String sql = "update entrada_saida set id_produto = ?, quantidade = ?, entrada= ? where id = ?";
         PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, usuario.getNome());
-        st.setString(2, usuario.getLogin());
-        st.setString(3, usuario.getSenha());
-        st.setString(4, usuario.getChave_senha());
-        st.setBoolean(5, usuario.isIs_admin());
-        st.setInt(6, usuario.getId());
+        st.setInt(1, entradaSaida.getProduto().getId());
+        st.setInt(2, entradaSaida.getQuantidade());
+        st.setBoolean(3, entradaSaida.isEntrada());
+        st.setInt(4, entradaSaida.getId());
         st.execute();
         con.close();
     }
 
     public void Cadastra(EntradaSaida entradaSaida) throws SQLException {
 
-        String sql = "insert into entrada_saida (id_produto, id_fornecedor, quantidade, entrada, id_usuario, venda) values (?, ?, ?, ?, ?, ?);";
+        String sql = "insert into entrada_saida (id_produto, quantidade, entrada) values (?, ?, ?);";
         PreparedStatement st = con.prepareStatement(sql);
         st.setInt(1, entradaSaida.getProduto().getId());
-        st.setInt(2, entradaSaida.getFornecedor().getId());
-        st.setInt(3, entradaSaida.getQuantidade());
-        st.setBoolean(4, entradaSaida.isEntrada());
-        st.setInt(5, entradaSaida.getUsuario().getId());
-        st.setBoolean(6, entradaSaida.isVenda());
+        st.setInt(2, entradaSaida.getQuantidade());
+        st.setBoolean(3, entradaSaida.isEntrada());
         st.execute();
         con.close();
         
@@ -74,14 +69,10 @@ public class EntradaSaidaDAO {
                 EntradaSaida entradaSaida = new EntradaSaida();
                 entradaSaida.setEntrada(rs.getBoolean("entrada"));
                 FornecedorDAO fornecedorDAO = new FornecedorDAO();
-                entradaSaida.setFornecedor(fornecedorDAO.getOneById(rs.getInt("id_fornecedor")));
                 entradaSaida.setId(rs.getInt("id"));
                 ProdutoDAO produtoDAO = new ProdutoDAO();
                 entradaSaida.setProduto(produtoDAO.getOneById(rs.getInt("id_produto")));
                 entradaSaida.setQuantidade(rs.getInt("quantidade"));
-                UsuarioDAO usuarioDAO = new UsuarioDAO();
-                entradaSaida.setUsuario(usuarioDAO.getOneById(rs.getInt("id_usuario")));
-                entradaSaida.setVenda(rs.getBoolean("venda"));
                 entradaSaidas.add(entradaSaida);
             }
             rs.close();
@@ -92,6 +83,7 @@ public class EntradaSaidaDAO {
        
     public void remove(int id) throws SQLException {
         try {
+            System.out.println("id: "+id);
             PreparedStatement st = con.prepareStatement("delete from entrada_saida where id = ?;");
             st.setInt(1, id);
             st.execute();

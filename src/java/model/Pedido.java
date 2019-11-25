@@ -14,7 +14,7 @@ public class Pedido {
     String cliente;
     String dataPedido;
     float valor;
-    float qtdPaes;
+    int qtdPaes;
 
     public int getId() {
         return id;
@@ -49,11 +49,11 @@ public class Pedido {
         this.valor = valor;
     }
 
-    public float getQtdPaes() {
+    public int getQtdPaes() {
         return qtdPaes;
     }
 
-    public void setQtdPaes(float qtdPaes) {
+    public void setQtdPaes(int qtdPaes) {
         this.qtdPaes = qtdPaes;
     }
     

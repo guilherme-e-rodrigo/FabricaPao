@@ -20,11 +20,13 @@ public class FornecedorDAO {
     }
     
     public void edita(Fornecedor fornecedor) throws SQLException{
-        String sql = "update fornecedor set nome = ?, descricao = ? where id = ?;";
+        String sql = "update fornecedor set nome = ?, telefone = ?, cnpj = ?, email = ? where id = ?;";
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, fornecedor.getNome());
-        //st.setString(2, fornecedor.getDescricao());
-        st.setInt(3, fornecedor.getId());
+        st.setString(2, fornecedor.getTelefone());
+        st.setString(3, fornecedor.getCnpj());
+        st.setString(4, fornecedor.getEmail());
+        st.setInt(5, fornecedor.getId());
         st.execute();
         con.close();
     }

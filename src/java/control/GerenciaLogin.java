@@ -86,9 +86,9 @@ public class GerenciaLogin extends HttpServlet {
             
             if(login.equals("admin") && senha.equals("admin")) {
                 RequestDispatcher requestDispatcher = request
-	        .getRequestDispatcher("controleEstoque.html");
+	        .getRequestDispatcher("controleEntradaSaida.jsp");
                 requestDispatcher.forward(request, response);
-            }
+            } else {
             
             Criptografia criptografia = new Criptografia();
             UsuarioDAO usuarioDAO;
@@ -114,6 +114,7 @@ public class GerenciaLogin extends HttpServlet {
             }
             
         }    
+        }
         
     }
 

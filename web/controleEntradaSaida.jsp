@@ -1,3 +1,7 @@
+<%@page import="model.Produto"%>
+<%@page import="dao.ProdutoDAO"%>
+<%@page import="model.EntradaSaida"%>
+<%@page import="dao.EntradaSaidaDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Fornecedor"%>
 <%@page import="dao.FornecedorDAO"%>
@@ -132,7 +136,7 @@ $(document).ready(function(){
         <li><a href="controleFornecedor.jsp">Fornecedores</a></li>
         <li><a href="controleProdutos.jsp">Produtos</a></li>
         <li><a href="controleUsuarios.jsp">Usuarios</a></li>
-        <li><a href="controleEstoque.jsp">Estoque</a></li>
+        <li><a href="controleEntradaSaida.jsp">Estoque</a></li>
         <li><a href="controlePedidos.jsp">Pedidos</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -146,7 +150,7 @@ $(document).ready(function(){
             <h2>Controle de <b>Estoque</b></h2>
           </div>
           <div class="col-sm-6">
-            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Cadastrar novo Fornecedor</span></a>
+            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Cadastrar Entrada/Saida</span></a>
             <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Deletar</span></a>           
           </div>
                 </div>
@@ -160,37 +164,43 @@ $(document).ready(function(){
                 <label for="selectAll"></label>
               </span>
             </th>
+            <th>ID</th>
                 <th>Produto</th>
                 <th>Quantidade</th>
-                <th>Entrada/Saida</th>
+                <th>Entrada/Saida</th>  
                 </thead>
                 <tbody>
-                  <form action="GerenciarFornecedor" method="post">
+                  <form action="GerenciarEntradaSaida" method="post">
                     <tr>  
-                        <% FornecedorDAO dao = new FornecedorDAO();
-                            List<Fornecedor> fornecedores = dao.consulta();
+                        <% EntradaSaidaDAO dao = new EntradaSaidaDAO();
+                            List<EntradaSaida> historico = dao.consulta();
                             int x = 0;
-                            for (Fornecedor f : fornecedores) {
+                            for (EntradaSaida ed : historico) {
                             %>
                         <td>
                             <span class="custom-checkbox">
-                                <input type="checkbox" id="checkbox2" name="options[]" value="<%=f.getId()%>">
+                                <input type="checkbox" id="checkbox2" name="options[]" value="<%=ed.getId()%>">
                                 <label for="checkbox2"></label>
                             </span>
                             
                         </td>
-                            <td><%=f.getId()%></td>
-                            <td><%=f.getNome()%></td>
-                            <td><%=f.getTelefone()%></td>
-                            <td><%=f.getEmail()%></td>
-                            <td><%=f.getCnpj()%></td>
+                            <td><%=ed.getId()%></td>
+                            <td><%=ed.getProduto().getNome()%></td>
+                            <td><%=ed.getQuantidade()%></td>
+                            <%  String resultado;
+                                if(ed.isEntrada() == true){
+                                resultado = "+"; }
+                                else {
+                                resultado = "-";
+                                }
+                                %><td><h1><%=resultado%></h1></td>
                         <td>
                           <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
-                          <input type="hidden" name="id_editar" value="<%=f.getId()%>"  id="<%= "id_item"+x%>"  >
+                          <input type="hidden" name="id_editar" value="<%=ed.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                         </td>
-                        <%}%>
                     </tr>
+                    <%}%>
                   </form>
                 </tbody>
             </table>    
@@ -198,57 +208,31 @@ $(document).ready(function(){
   <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form action="GerenciarFornecedor" method="post">
+        <form action="GerenciarEntradaSaida" method="post">
           <div class="modal-header">            
-            <h4 class="modal-title">Adicionar Fornecedor</h4>
+            <h4 class="modal-title">Adicionar Produto em Estoque</h4>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
           <div class="modal-body">          
             <div class="form-group">
-              <label>Nome</label>
-              <input type="text" name="nome" class="form-control" required>
+              <label>Produto</label>
+              <select name="produto">
+                <% ProdutoDAO prodDAO = new ProdutoDAO();
+                List<Produto> produtos = prodDAO.consulta();
+                 for (Produto p: produtos) {
+                %>
+                <option value="<%=p.getId()%>"><%=p.getNome()%></option>
+                <%} %>
+                </select><br>
             </div>
             <div class="form-group">
-              <label>Telefone</label>
-              <input type="text" name="telefone" class="form-control" required>
+              <label>Quantidade</label>
+              <input type="text" name="quantidade" class="form-control" required>
             </div>
             <div class="form-group">  
-              <label>E-Mail</label>
-              <input type="text" name="email" class="form-control" required>
-            </div>     
-            <div class="form-group">
-              <label>Cnpj</label>
-              <input type="text" name="cnpj" class="form-control" required>
-            </div>     
-            <div class="form-group">
-              <label>Cep</label>
-              <input name="cep" type="text" id="cep" value="" class="form-control" size="10" maxlength="9"
-               onblur="pesquisacep(this.value);" required />
+              <label>Entrada?</label>
+            <input type="checkbox" name="entrada" value="true"/>
             </div>          
-            <div class="form-group">
-              <label>Estado</label>
-              <input name="estado" type="text" id="estado" class="form-control" size="2" required/>
-            </div>     
-            <div class="form-group">
-              <label>Cidade</label>
-             <input name="cidade" class="form-control" type="text" id="cidade" size="40" required/>
-            </div>     
-            <div class="form-group">
-              <label>Bairo</label>
-              <input name="bairro" type="text" class="form-control" id="bairro" size="40" required />
-            </div>     
-            <div class="form-group">
-              <label>Rua</label>
-              <input name="rua" class="form-control" type="text" id="rua" size="60" required />
-            </div>
-            <div class="form-group">
-              <label>Numero</label>
-              <input name="numero" type="number" class="form-control" id="numero" size="60" required />
-            </div>     
-            <div class="form-group">
-              <label>Complemento</label>
-              <input name="complemento" type="text" class="form-control" id="complemento" size="60" />
-            </div>     
             </div>      
           </div>
           <div class="modal-footer">

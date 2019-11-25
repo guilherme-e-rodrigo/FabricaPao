@@ -1,3 +1,4 @@
+<%@page import="model.Fornecedor"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -22,6 +23,10 @@
 </head>
 
 <body>
+    <%
+    Fornecedor fornecedor = (Fornecedor) request.getAttribute("fornecedor");    
+    
+    %>
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
@@ -32,13 +37,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Nome</label>
-                                    <input class="input--style-4" type="text" name="nome">
+                                    <input class="input--style-4" value="<%=fornecedor.getNome()%>" type="text" name="nome">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Telefone</label>
-                                    <input class="input--style-4" type="text" name="telefone">
+                                    <input class="input--style-4" value="<%=fornecedor.getTelefone()%>" type="text" name="telefone">
                                 </div>
                             </div>
                         </div>
@@ -47,7 +52,7 @@
                                 <div class="input-group">
                                     <label class="label">Email</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-mail" type="text" name="email">
+                                        <input class="input--style-4 js-mail" value="<%=fornecedor.getEmail()%>" type="text" name="email">
                                         
                                     </div>
                                 </div>
@@ -56,8 +61,8 @@
                                 <div class="input-group">
                                     <label class="label">CNPJ</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
-                                        
+                                        <input class="input--style-4 js-datepicker" value="<%=fornecedor.getCnpj()%>" type="text" name="cnpj">
+                                        <input type="hidden" value="<%=fornecedor.getId()%>" name="id">
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +70,7 @@
                         <div class="row row-space">
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Editar</button>
+                            <button class="btn btn--radius-2 btn--blue" name="acao" value="Alterar" type="submit">Editar</button>
                         </div>
                     </form>
                 </div>

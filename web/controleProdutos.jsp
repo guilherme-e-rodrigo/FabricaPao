@@ -68,7 +68,7 @@ $(document).ready(function(){
         <li><a href="controleFornecedor.jsp">Fornecedores</a></li>
         <li><a href="controleProdutos.jsp">Produtos</a></li>
         <li><a href="controleUsuarios.jsp">Usuarios</a></li>
-        <li><a href="controleEstoque.jsp">Estoque</a></li>
+        <li><a href="controleEntradaSaida.jsp">Estoque</a></li>
         <li><a href="controlePedidos.jsp">Pedidos</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -82,7 +82,7 @@ $(document).ready(function(){
             <h2>Controle de <b>Produtos</b></h2>
           </div>
           <div class="col-sm-6">
-            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Cadastrar novo Fornecedor</span></a>
+            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Adicionar Produto</span></a>
             <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Deletar</span></a>           
           </div>
                 </div>
@@ -153,7 +153,7 @@ $(document).ready(function(){
             </div>
             <div class="form-group">  
               <label>Data de Producao</label>
-              <input type="text" name="data_producao" class="form-control" required>
+              <input type="date" name="data_producao" class="form-control" required>
             </div>     
             <div class="form-group">
               <label>Dias de validade</label>

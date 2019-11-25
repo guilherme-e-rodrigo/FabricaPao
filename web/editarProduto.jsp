@@ -63,24 +63,6 @@
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Fornecedor</label>
-                                    <div class="input-group-icon">
-                                    <select name="fornecedores">
-                                    <% FornecedorDAO dao = new FornecedorDAO();
-                                    List<Fornecedor> fornecedores = dao.consulta();
-                                            int x = 0;
-                                     for (Fornecedor p: fornecedores) {
-
-                                    %>
-                                    <option value="<%=p.getId()%>"><%=p.getNome()%></option>
-
-                                    <%} %>
-                                    </select><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
                                     <label class="label">Data de producao</label>
                                     <div class="input-group-icon">
                                         <input class="input--style-4 js-datepicker" value="<%=produto.getData_producao()%>" type="date" name="data_producao">

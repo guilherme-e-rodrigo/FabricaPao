@@ -76,6 +76,7 @@ public class UsuarioDAO {
         st.setString(1, usuario.getNome());
         st.setString(2, usuario.getLogin());
         st.setString(3, usuario.getSenha());
+        System.out.println("chegou no bd senha : "+usuario.getSenha());
         st.setString(4, usuario.getChave_senha());
         st.setBoolean(5, usuario.isIs_admin());
         st.execute();

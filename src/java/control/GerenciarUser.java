@@ -88,15 +88,17 @@ public class GerenciarUser extends HttpServlet {
                 String nome = request.getParameter("nome");
                 String login = request.getParameter("login");
                 String senha = request.getParameter("senha");
-                String is_admin = request.getParameter("radioAdmin");
+                boolean is_admin = Boolean.valueOf(request.getParameter("radioAdmin"));
 
                 Criptografia criptografia = new Criptografia();
+                System.out.println("chegou aqui");
+                System.out.println("senha= "+senha);
                 String chave = criptografia.genKey(senha.length());
                 String senha_criptografada = criptografia.criptografa(senha, chave);
-
+                System.out.println("senha cripto : "+senha_criptografada);
                 Usuario usuario = new Usuario();
                 usuario.setChave_senha(chave);
-                usuario.setIs_admin(Boolean.valueOf(is_admin));
+                usuario.setIs_admin(is_admin);
                 usuario.setLogin(login);
                 usuario.setNome(nome);
                 usuario.setSenha(senha_criptografada);
@@ -132,6 +134,7 @@ public class GerenciarUser extends HttpServlet {
             
        } else if(acao.equals("Editar")) {
             String id = request.getParameter("id_editar");
+            System.out.println("id editar: "+id);
             try {
                 UsuarioDAO usuarioDAO = new UsuarioDAO();
                 Usuario usuario = usuarioDAO.getOneById(Integer.valueOf(id));
@@ -140,9 +143,7 @@ public class GerenciarUser extends HttpServlet {
                     String senha = criptografia.decriptografa(usuario.getSenha(), usuario.getChave_senha());
                     usuario.setSenha(senha);
                     request.setAttribute("usuario", usuario);
-                    RequestDispatcher requestDispatcher = request
-                    .getRequestDispatcher("editarUsuario.jsp");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect("editarUsuario.jsp");
                 }
                 
             } catch (ClassNotFoundException | SQLException ex) {

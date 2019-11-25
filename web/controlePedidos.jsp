@@ -279,7 +279,7 @@ $(document).ready(function(){
         <li><a href="controleFornecedor.jsp">Fornecedores</a></li>
         <li><a href="controleProdutos.jsp">Produtos</a></li>
         <li><a href="controleUsuarios.jsp">Usuarios</a></li>
-        <li><a href="controleEstoque.jsp">Estoque</a></li>
+        <li><a href="controleEntradaSaida.jsp">Estoque</a></li>
         <li><a href="controlePedidos.jsp">Pedidos</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

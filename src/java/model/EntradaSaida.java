@@ -13,11 +13,9 @@ public class EntradaSaida {
     
     private int id;
     private Produto produto;
-    private Fornecedor fornecedor;
     private int quantidade;
     private boolean entrada;
-    private Usuario usuario;
-    private boolean venda;
+
 
     public int getId() {
         return id;
@@ -34,15 +32,6 @@ public class EntradaSaida {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-
     public int getQuantidade() {
         return quantidade;
     }
@@ -57,22 +46,6 @@ public class EntradaSaida {
 
     public void setEntrada(boolean entrada) {
         this.entrada = entrada;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public boolean isVenda() {
-        return venda;
-    }
-
-    public void setVenda(boolean venda) {
-        this.venda = venda;
     }
     
     

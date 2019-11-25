@@ -282,7 +282,7 @@ $(document).ready(function(){
             <li><a href="controleFornecedor.jsp">Fornecedores</a></li>
             <li><a href="controleProdutos.jsp">Produtos</a></li>
             <li><a href="controleUsuarios.jsp">Usuarios</a></li>
-            <li><a href="controleEstoque.jsp">Estoque</a></li>
+            <li><a href="controleEntradaSaida.jsp">Estoque</a></li>
             <li><a href="controlePedidos.jsp">Pedidos</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -316,7 +316,7 @@ $(document).ready(function(){
                 <th>Admin?</th>
                 </thead>
                 <tbody>
-                    <form action="GerenciarUsuarios" method="post">
+                    <form action="GerenciarUser" method="post">
                     <tr>
                         <% UsuarioDAO dao = new UsuarioDAO();
                             List<Usuario> usuarios = dao.consulta();
@@ -358,23 +358,19 @@ $(document).ready(function(){
           <div class="modal-body">          
             <div class="form-group">
               <label>Nome</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="nome" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Login</label>
-              <input type="text" class="form-control" required>
+              <input type="text" name="login" class="form-control" required>
             </div>
             <div class="form-group">
               <label>Senha</label>
-              <input type="text" class="form-control" required></textarea>
+              <input type="text" name="senha" class="form-control" required></textarea>
             </div>     
             <div class="form-group">
-              <label>Admin ou usuario?</label>
-              <div class="custom-control custom-radio">
-              <input type="radio" name="radioAdmin" id="isUser" class="custom-control-input" required></input>
-              <label class="custom-control-label">Usuario</label>
-              <input type="radio" name="radioAdmin" id="isAdmin" class="custom-control-input" required></input>
-              <label class="custom-control-label">Admin</label>
+              <label>Admin?</label>
+              <input type="checkbox" name="radioAdmin" value="true"/>
             </div>
             </div>      
           </div>
