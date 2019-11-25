@@ -366,7 +366,7 @@ $(document).ready(function(){
             </div>
             <div class="form-group">
               <label>Senha</label>
-              <input type="text" name="senha" class="form-control" required></textarea>
+              <input type="text" name="senha" minlength="8" class="form-control" required>
             </div>     
             <div class="form-group">
               <label>Admin?</label>

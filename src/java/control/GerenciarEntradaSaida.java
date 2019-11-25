@@ -120,48 +120,7 @@ public class GerenciarEntradaSaida extends HttpServlet {
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(GerenciarUser.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }else if(acao.equals("Editar")) {
-            String id = request.getParameter("id_editar");
-            try {
-                
-                FornecedorDAO fornecedorDAO = new FornecedorDAO();
-                Fornecedor fornecedor = fornecedorDAO.getOneById(Integer.valueOf(id));
-                
-                if(fornecedor != null) {
-                    request.setAttribute("fornecedor", fornecedor);
-                    RequestDispatcher requestDispatcher = request
-                    .getRequestDispatcher("editarFornecedor.jsp");
-                    requestDispatcher.forward(request, response);
-                }
-                
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(GerenciarUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-       } else if(acao.equals("Alterar")) {
-           
-            String nome = request.getParameter("nome");
-            String telefone = request.getParameter("telefone");
-            String email = request.getParameter("email");
-            String cnpj = request.getParameter("cnpj");
-            String id = request.getParameter("id");
-           
-            try {
-                FornecedorDAO fornecedorDAO = new FornecedorDAO();
-                Fornecedor fornecedor = fornecedorDAO.getOneById(Integer.valueOf(id));
-                fornecedor.setNome(nome);
-                fornecedor.setCnpj(cnpj);
-                fornecedor.setEmail(email);
-                fornecedor.setTelefone(telefone);
-                fornecedorDAO.edita(fornecedor);
-                
-                RequestDispatcher requestDispatcher = request
-                .getRequestDispatcher("controleFornecedor.jsp");
-                requestDispatcher.forward(request, response);
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(GerenciarUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-           
-           
+            
        } 
     }
 

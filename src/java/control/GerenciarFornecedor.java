@@ -138,7 +138,7 @@ public class GerenciarFornecedor extends HttpServlet {
        } else if(acao.equals("Excluir")) {
            
            String id = request.getParameter("id_editar");
-           
+            System.out.println("id: "+id);
             try {
                 
                 FornecedorDAO fornecedorDAO = new FornecedorDAO();

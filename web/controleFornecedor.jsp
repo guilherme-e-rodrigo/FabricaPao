@@ -190,10 +190,9 @@ $(document).ready(function(){
                           <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                           <input type="hidden" name="id_editar" value="<%=f.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
-                        </td>
-                        
+                     </td>
                     </tr>
-                    <%}%>
+                    <%x++;}%>
                   </form>
                 </tbody>
             </table>    

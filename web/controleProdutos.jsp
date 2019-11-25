@@ -126,8 +126,9 @@ $(document).ready(function(){
                           <input type="hidden" name="id_editar" value="<%=p.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                         </td>
-                        <%}%>
+                        
                     </tr>
+                    <%}%>
                   </form>
                 </tbody>
             </table>
