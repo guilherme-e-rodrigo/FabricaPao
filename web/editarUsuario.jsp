@@ -33,7 +33,7 @@
                         Usuario user = new Usuario();
                         user = (Usuario) request.getAttribute("usuario");
                         System.out.println("Id:"+user.getId());
-                    %>%>
+                    %>
                     <form method="post" action="GerenciarUser">
                         <div class="row row-space">
                             <div class="col-2">
@@ -81,7 +81,7 @@
                         <div class="row row-space">
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" name="acao" value="Alterar "type="submit">Editar</button>
+                            <button class="btn btn--radius-2 btn--blue" name="acao" value="Alterar" type="submit">Editar</button>
                         </div>
                     </form>
                 </div>

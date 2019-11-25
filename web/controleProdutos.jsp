@@ -103,7 +103,7 @@ $(document).ready(function(){
                 <th>Dias de Validade</th>
                 </thead>
                 <tbody>
-                  <form action="GerenciarFornecedor" method="post">
+                  <form action="GerenciarProduto" method="post">
                     <tr>  
                         <% ProdutoDAO dao = new ProdutoDAO();
                             List<Produto> produtos = dao.consulta();

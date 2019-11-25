@@ -40,29 +40,54 @@ public class ProdutoDAO {
     }
     
     public void edita(Produto produto) throws SQLException{
-        String sql = "update produto set nome = ?, peso = ?, data_producao = ?, id_fornecedor = ?, validade_dias = ? where id = ?;";
-        PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, produto.getNome());
-        st.setDouble(2, produto.getPeso());
-        st.setDate(3, produto.getData_producao());
-        st.setInt(4, produto.getFornecedor().getId());
-        st.setInt(5, produto.getValidade_dias());
-        st.setInt(6, produto.getId());
-        st.execute();
-        con.close();
+        
+        if(produto.getFornecedor() != null) {
+            String sql = "update produto set nome = ?, peso = ?, data_producao = ?, id_fornecedor = ?, validade_dias = ? where id = ?;";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, produto.getNome());
+            st.setDouble(2, produto.getPeso());
+            st.setDate(3, produto.getData_producao());
+            st.setInt(4, produto.getFornecedor().getId());
+            st.setInt(5, produto.getValidade_dias());
+            st.setInt(6, produto.getId());
+            st.execute();
+            con.close();
+        } else {
+            String sql = "update produto set nome = ?, peso = ?, data_producao = ?, validade_dias = ? where id = ?;";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, produto.getNome());
+            st.setDouble(2, produto.getPeso());
+            st.setDate(3, produto.getData_producao());
+            st.setInt(4, produto.getValidade_dias());
+            st.setInt(5, produto.getId());
+            st.execute();
+            con.close();
+        }
+        
+        
     }
 
     public void Cadastra(Produto produto) throws SQLException {
-
-        String sql = "insert into produto (nome, peso, data_producao, id_fornecedor, validade_dias) values (?, ?, ?, ?, ?);";
-        PreparedStatement st = con.prepareStatement(sql);
-        st.setString(1, produto.getNome());
-        st.setDouble(2, produto.getPeso());
-        st.setDate(3, produto.getData_producao());
-        st.setInt(4, produto.getFornecedor().getId());
-        st.setInt(5, produto.getValidade_dias());
-        st.execute();
-        con.close();
+        if(produto.getFornecedor() != null) {
+            String sql = "insert into produto (nome, peso, data_producao, id_fornecedor, validade_dias) values (?, ?, ?, ?, ?);";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, produto.getNome());
+            st.setDouble(2, produto.getPeso());
+            st.setDate(3, produto.getData_producao());
+            st.setInt(4, produto.getFornecedor().getId());
+            st.setInt(5, produto.getValidade_dias());
+            st.execute();
+            con.close();
+        } else {
+            String sql = "insert into produto (nome, peso, data_producao, validade_dias) values (?, ?, ?, ?);";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, produto.getNome());
+            st.setDouble(2, produto.getPeso());
+            st.setDate(3, produto.getData_producao());
+            st.setInt(4, produto.getValidade_dias());
+            st.execute();
+            con.close();
+        }
         
     }
     
@@ -76,7 +101,7 @@ public class ProdutoDAO {
                 produto.setData_producao(rs.getDate("data_producao"));
                 FornecedorDAO fornecedorDAO = new FornecedorDAO();
                 produto.setFornecedor(fornecedorDAO.getOneById(rs.getInt("id_fornecedor")));
-                produto.setId(rs.getInt(rs.getInt("id")));
+                produto.setId(rs.getInt("id"));
                 produto.setNome(rs.getString("nome"));
                 produto.setPeso(rs.getFloat("peso"));
                 produto.setValidade_dias(rs.getInt("validade_dias"));
