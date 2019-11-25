@@ -121,7 +121,57 @@ public class GerenciarEntradaSaida extends HttpServlet {
                 Logger.getLogger(GerenciarUser.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-       } 
+       } else if(acao.equals("Editar")) {
+            String id = request.getParameter("id_editar");
+            try {
+                
+                EntradaSaidaDAO dao = new EntradaSaidaDAO();
+                EntradaSaida estoque = dao.getOneById(Integer.valueOf(id));
+                
+                if(estoque != null) {
+                    request.setAttribute("estoque", estoque);
+                    RequestDispatcher requestDispatcher = request
+                    .getRequestDispatcher("editarEntradaSaida.jsp");
+                    requestDispatcher.forward(request, response);
+                }
+                
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(GerenciarUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       } else if(acao.equals("Alterar")) {
+            try {
+                ProdutoDAO prodDAO = new ProdutoDAO();
+                Produto prod = new Produto();
+                int id_produto = Integer.valueOf(request.getParameter("produto"));
+                prod = prodDAO.getOneById(id_produto);
+                
+                int quantidade = Integer.valueOf(request.getParameter("quantidade"));
+                boolean isEntrada = Boolean.valueOf(request.getParameter("entrada"));
+                EntradaSaida estoque = new EntradaSaida();
+                estoque.setEntrada(isEntrada);
+                estoque.setProduto(prod);
+                estoque.setQuantidade(quantidade);
+                
+                try {
+                    EntradaSaidaDAO dao = new EntradaSaidaDAO();
+                    dao.Cadastra(estoque);
+                    
+                    RequestDispatcher requestDispatcher = request
+                            .getRequestDispatcher("controleEntradaSaida.jsp");
+                    requestDispatcher.forward(request, response);
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(GerenciarUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GerenciarEntradaSaida.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(GerenciarEntradaSaida.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+           
+       }
     }
 
     /**

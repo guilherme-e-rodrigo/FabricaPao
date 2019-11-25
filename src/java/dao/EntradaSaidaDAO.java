@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import jdbc.ConexaoBD;
 import model.EntradaSaida;
+import model.Produto;
 import model.Usuario;
 
 
@@ -20,21 +21,23 @@ public class EntradaSaidaDAO {
             System.out.println("Conectado!");
     }
     
-    public Usuario getOneById(int id_usuario) throws SQLException, ClassNotFoundException {
-        String sql = "select * from usuario where id = ?";
+    public EntradaSaida getOneById(int id_entrada) throws SQLException, ClassNotFoundException {
+        String sql = "select * from entrada_saida where id = ?";
         PreparedStatement st = con.prepareStatement(sql);
-        st.setInt(1, id_usuario);
+        st.setInt(1, id_entrada);
         ResultSet rs = st.executeQuery();
-        Usuario usuario = new Usuario();
+        EntradaSaida estoque = new EntradaSaida();
         while(rs.next()) {
-            usuario.setChave_senha(rs.getString("chave_senha"));
-            usuario.setId(rs.getInt("id"));
-            usuario.setIs_admin(rs.getBoolean("is_admin"));
-            usuario.setLogin(rs.getString("login"));
-            usuario.setNome(rs.getString("nome"));
-            usuario.setSenha(rs.getString("senha"));
+            estoque.setQuantidade(rs.getInt("quantidade"));
+            estoque.setId(rs.getInt("id"));
+            estoque.setEntrada(rs.getBoolean("entrada"));
+            Produto produto = new Produto();
+            ProdutoDAO pdao = new ProdutoDAO();
+            produto = pdao.getOneById(rs.getInt("id_produto"));
+            estoque.setProduto(produto);
+            
         }
-        return usuario;
+        return estoque;
     }
     
     public void edita(EntradaSaida entradaSaida) throws SQLException{

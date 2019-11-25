@@ -69,8 +69,10 @@ $(document).ready(function(){
         <li><a href="controleProdutos.jsp">Produtos</a></li>
         <li><a href="controleUsuarios.jsp">Usuarios</a></li>
         <li><a href="controleEntradaSaida.jsp">Estoque</a></li>
-        <li><a href="controlePedidos.jsp">Pedidos</a></li>
       </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="login.html"><b>Logout</b></a>
+        </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
