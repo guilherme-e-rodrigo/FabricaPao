@@ -170,7 +170,7 @@ $(document).ready(function(){
                 <th>Entrada/Saida</th>  
                 </thead>
                 <tbody>
-                  <form action="GerenciarEntradaSaida" method="post">
+                  
                     <tr>  
                         <% EntradaSaidaDAO dao = new EntradaSaidaDAO();
                             List<EntradaSaida> historico = dao.consulta();
@@ -195,9 +195,11 @@ $(document).ready(function(){
                                 }
                                 %><td><h1><%=resultado%></h1></td>
                         <td>
+                            <form action="GerenciarEntradaSaida" method="post">
                           <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                           <input type="hidden" name="id_editar" value="<%=ed.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
+                            </form>
                         </td>
                     </tr>
                     <%}%>

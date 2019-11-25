@@ -167,7 +167,7 @@ $(document).ready(function(){
                 <th>Cnpj</th>
                 </thead>
                 <tbody>
-                  <form action="GerenciarFornecedor" method="post">
+                  
                     <tr>  
                         <% FornecedorDAO dao = new FornecedorDAO();
                             List<Fornecedor> fornecedores = dao.consulta();
@@ -187,13 +187,15 @@ $(document).ready(function(){
                             <td><%=f.getEmail()%></td>
                             <td><%=f.getCnpj()%></td>
                         <td>
+                            <form action="GerenciarFornecedor" method="post">
                           <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                           <input type="hidden" name="id_editar" value="<%=f.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
+                            </form>
                      </td>
                     </tr>
                     <%x++;}%>
-                  </form>
+                  
                 </tbody>
             </table>    
   <!-- ADD Modal HTML -->

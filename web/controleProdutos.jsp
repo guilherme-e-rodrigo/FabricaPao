@@ -103,7 +103,7 @@ $(document).ready(function(){
                 <th>Dias de Validade</th>
                 </thead>
                 <tbody>
-                  <form action="GerenciarProduto" method="post">
+                  
                     <tr>  
                         <% ProdutoDAO dao = new ProdutoDAO();
                             List<Produto> produtos = dao.consulta();
@@ -122,14 +122,16 @@ $(document).ready(function(){
                             <td><%=p.getData_producao()%></td>
                             <td><%=p.getValidade_dias()%></td>
                         <td>
+                            <form action="GerenciarProduto" method="post">
                           <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                           <input type="hidden" name="id_editar" value="<%=p.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
+                            </form>
                         </td>
                         
                     </tr>
                     <%}%>
-                  </form>
+                  
                 </tbody>
             </table>
         </div>

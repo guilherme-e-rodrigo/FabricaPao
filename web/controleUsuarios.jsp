@@ -316,7 +316,7 @@ $(document).ready(function(){
                 <th>Admin?</th>
                 </thead>
                 <tbody>
-                    <form action="GerenciarUser" method="post">
+                    
                     <tr>
                         <% UsuarioDAO dao = new UsuarioDAO();
                             List<Usuario> usuarios = dao.consulta();
@@ -334,9 +334,11 @@ $(document).ready(function(){
                             <td><%=u.getLogin()%></td>
                             <td><%=u.isIs_admin()%></td>
                             <td>
+                                <form action="GerenciarUser" method="post">
                             <td><input type="submit" value="Editar" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
                           <input type="hidden" name="id_editar" value="<%=u.getId()%>"  id="<%= "id_item"+x%>"  >
                           <td><input type="submit" value="Excluir" name="acao" class="btn btn-outline-info" ><i class="fas fa-pen"></i></input></td>
+                                </form>
                         </td>
                     </tr>
                     <%}%>
