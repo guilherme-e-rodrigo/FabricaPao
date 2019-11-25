@@ -142,8 +142,11 @@ public class GerenciarUser extends HttpServlet {
                     Criptografia criptografia = new Criptografia();
                     String senha = criptografia.decriptografa(usuario.getSenha(), usuario.getChave_senha());
                     usuario.setSenha(senha);
+                    System.out.println(usuario);
                     request.setAttribute("usuario", usuario);
-                    response.sendRedirect("editarUsuario.jsp");
+                    RequestDispatcher requestDispatcher = request
+                    .getRequestDispatcher("editarUsuario.jsp");
+                    requestDispatcher.forward(request, response);
                 }
                 
             } catch (ClassNotFoundException | SQLException ex) {
