@@ -31,7 +31,7 @@ public class UsuarioDAO {
             usuario.setChave_senha(rs.getString("chave_senha"));
             usuario.setId(rs.getInt("id"));
             usuario.setIs_admin(rs.getBoolean("is_admin"));
-            usuario.setLogin(rs.getString("login"));
+            usuario.setLogin(rs.getString("user_login"));
             usuario.setNome(rs.getString("nome"));
             usuario.setSenha(rs.getString("senha"));
         }
@@ -39,7 +39,7 @@ public class UsuarioDAO {
     }
     
     public Usuario getOneByLogin(String login) throws SQLException {
-        String sql = "select * from usuario where login = ?";
+        String sql = "select * from usuario where user_login = ?";
         PreparedStatement st = con.prepareStatement(sql);
         st.setString(1, login);
         ResultSet rs = st.executeQuery();
@@ -49,7 +49,7 @@ public class UsuarioDAO {
             usuario.setChave_senha(rs.getString("chave_senha"));
             usuario.setId(rs.getInt("id"));
             usuario.setIs_admin(rs.getBoolean("is_admin"));
-            usuario.setLogin(rs.getString("login"));
+            usuario.setLogin(rs.getString("user_login"));
             usuario.setNome(rs.getString("nome"));
             usuario.setSenha(rs.getString("senha"));
         }
@@ -93,7 +93,7 @@ public class UsuarioDAO {
                 usuario.setChave_senha(rs.getString("chave_senha"));
                 usuario.setId(rs.getInt("id"));
                 usuario.setIs_admin(rs.getBoolean("is_admin"));
-                usuario.setLogin(rs.getString("login"));
+                usuario.setLogin(rs.getString("user_login"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setSenha(rs.getString("senha"));
                 usuarios.add(usuario);

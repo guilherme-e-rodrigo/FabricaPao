@@ -48,6 +48,30 @@ public class EnderecoDAO {
         }
         return endereco;
     }
+    
+    public Endereco getOneByAddress(Endereco endereco_busca) throws SQLException {
+        String sql = "select * from endereco where rua = ? and bairro = ? and cep = ? and numero = ? and cidade = ? and complemento = ?;";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, endereco_busca.getRua());
+        st.setString(2, endereco_busca.getBairro());
+        st.setString(3, endereco_busca.getCep());
+        st.setInt(4, endereco_busca.getNumero());
+        st.setString(5, endereco_busca.getCidade());
+        st.setString(6, endereco_busca.getComplemento());
+        ResultSet rs = st.executeQuery();
+        Endereco endereco = new Endereco();
+        while(rs.next()) {    
+            endereco.setBairro(rs.getString("bairro"));
+            endereco.setCep(rs.getString("cep"));
+            endereco.setCidade(rs.getString("cidade"));
+            endereco.setComplemento(rs.getString("complemento"));
+            endereco.setEstado(rs.getString("estado"));
+            endereco.setId(rs.getInt("id"));
+            endereco.setNumero(rs.getInt("numero"));
+            endereco.setRua(rs.getString("rua"));
+        }
+        return endereco;
+    }
 
     public void Cadastra(Endereco endereco) throws SQLException {
 
@@ -60,7 +84,6 @@ public class EnderecoDAO {
         st.setString(5, endereco.getBairro());
         st.setString(6, endereco.getCep());
         st.setString(7, endereco.getCidade());
-
         
         //st.setString(2, fornecedor.getDescricao());
         st.execute();
