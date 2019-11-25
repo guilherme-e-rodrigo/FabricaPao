@@ -39,7 +39,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">ID: </label>
-                                    <input class="input--style-4" value="" type="text" name="id" readonly="true">
+                                    <input class="input--style-4" value="<%=user.getId()%>" type="text" name="id" readonly="true">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -51,7 +51,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Login</label>
-                                    <input class="input--style-4" value="" type="text" name="login">
+                                    <input class="input--style-4" value="<%=user.getLogin()%>" type="text" name="login">
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 <div class="input-group">
                                     <label class="label">Senha</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-mail" value="" type="text" name="senha">
+                                        <input class="input--style-4 js-mail" value="<%=user.getSenha()%>" type="text" name="senha">
                                         
                                     </div>
                                 </div>
